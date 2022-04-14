@@ -6,13 +6,14 @@ import kotlin.random.Random
 
 fun main() {
 
-    // lambdas
+    // lambda
     val result = operations(3,2)  { y, x ->  y * x }
 
     //Corrutinas -> primer ejemplo
     //coroutines()
 
-    // Coonstructor de corrutinas GlobalScope
+    // GlobalScope -> Se mantienen durante el ciclo de vida de la App
+    // indica el scope - de la corrutina - Main
     globalScope()
 
     readLine()
@@ -23,8 +24,6 @@ fun main() {
     // Diseñado para cuando esperemos un valor en la corrutina
     cAsync() //Retorna un deferred
     //
-
-
 
 }
 
@@ -66,17 +65,6 @@ fun globalScope() {
         println("GlobalScope")
         endMsg()
     }
-
-
-
-}
-
-fun endMsg() {
-    println("Corrutina finalizada: -${Thread.currentThread().name}-")
-}
-
-fun startMsg() {
-    println("Comenzando corrutina: -${Thread.currentThread().name}-")
 }
 
 fun coroutines() {
@@ -91,7 +79,13 @@ fun coroutines() {
     }
 }
 
+fun startMsg() {
+    println("Comenzando corrutina: -${Thread.currentThread().name}-")
+}
 
+fun endMsg() {
+    println("Corrutina finalizada: -${Thread.currentThread().name}-")
+}
 
 //Función de orden superior
 fun operations (y : Int , x: Int, block : (Int, Int) -> Int) = block(y,x)
